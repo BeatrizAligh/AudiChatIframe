@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 300px; height: 600px; overflow: hidden; }
+    iframe { display: block; width: 300px; height: 600px; border: none; }
+  </style>
+</head>
+<body>
+  <!-- CM360 Impression Tag – A3SB_CHATBOT_TEXTO (image pixel) -->
+  <img src="https://ad.doubleclick.net/ddm/trackimp/N444803.3630620FRATMEDIAMX/B34956653.442435780;dc_trk_aid=636203656;dc_trk_cid=251855878;ord=[timestamp];dc_dbm_token=${DC_DBM_TOKEN};dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};gpp=${GPP_STRING_755};gpp_sid=${GPP_SID};ltd=;dc_tdv=1?" attributionsrc border="0" height="1" width="1" alt="Advertisement" style="position:absolute;top:0;left:0;">
+  <!-- End CM360 Impression Tag -->
+
+  <script>
+    // El ad server (CM360) reemplaza el valor de clickTag automáticamente en producción
+    var clickTag = "https://ad.doubleclick.net/ddm/trackclk/N444803.3630620FRATMEDIAMX/B34956653.442435780;dc_trk_aid=636203656;dc_trk_cid=251855878;dc_dbm_token=${DC_DBM_TOKEN};dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};gpp=${GPP_STRING_755};gpp_sid=${GPP_SID};ltd=;dc_tdv=1";
+
+    // IDs de Analytics — se pasan como parámetros URL al index.html dentro del iframe
+    // Si el cliente necesita usar sus propios IDs, solo cambia estos valores aquí
+    var gtmId = 'GTM-5KCPBT4S';
+    var gaId  = 'G-ZGJZFDHEE1';
+
+    // Construir el src dinámicamente para propagar clickTag, GTM y GA4 al hijo
+    document.write(
+      '<iframe' +
+      ' src="https://pruebas.dardranightstudios.com/AudiL/' +
+        '?clickTag=' + encodeURIComponent(clickTag) +
+        '&gtm='      + encodeURIComponent(gtmId) +
+        '&ga='       + encodeURIComponent(gaId) +
+      '"' +
+      ' width="300"' +
+      ' height="600"' +
+      ' scrolling="no"' +
+      ' frameborder="0"' +
+      ' sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"' +
+      ' allow="autoplay"' +
+      '></iframe>'
+    );
+  </script>
+</body>
+</html>

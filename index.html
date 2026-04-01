@@ -1,43 +1,2047 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { width: 300px; height: 600px; overflow: hidden; }
-    iframe { display: block; width: 300px; height: 600px; border: none; }
-  </style>
+<html lang="es">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <head>
+    <!-- Analytics: lee GTM ID y GA4 ID desde URL params, con fallback a los IDs propios -->
+    <script>
+      var _urlParams = new URLSearchParams(window.location.search);
+      var _gtmId = _urlParams.get('gtm') || 'GTM-5KCPBT4S';
+      var _gaId  = _urlParams.get('ga')  || 'G-ZGJZFDHEE1';
+
+      // ── Impression Analytics Event ──────────────────────────────────────
+      // Se dispara UNA sola vez cuando el ad entra al viewport (impresión viewable)
+      (function() {
+        var impressionFired = false;
+
+        function fireImpression() {
+          // GA4 directo
+          if (typeof gtag === 'function') {
+            gtag('event', 'ad_impression', {
+              ad_creative: 'A3SB_CHATBOT_TEXTO',
+              placement_id: '442435780',
+              campaign_id: '34956653'
+            });
+          }
+
+          // GTM dataLayer (para reglas en GTM si se necesitan)
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'ad_impression',
+            ad_creative: 'A3SB_CHATBOT_TEXTO',
+            placement_id: '442435780',
+            campaign_id: '34956653'
+          });
+
+          console.log('📣 Impression event fired: A3SB_CHATBOT_TEXTO');
+        }
+
+        // ✅ FIX: Esperar a que el DOM esté listo antes de observar el elemento
+        document.addEventListener('DOMContentLoaded', function() {
+          var target = document.getElementById('root') || document.body;
+
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting && !impressionFired) {
+                impressionFired = true;
+                observer.disconnect();
+                fireImpression();
+              }
+            });
+          }, { threshold: 0.5 }); // 50% visible = impresión válida
+
+          observer.observe(target);
+        });
+      })();
+      // ── End Impression Analytics Event ──────────────────────────────────
+      console.log("clickTag:", _urlParams.get('clickTag'));
+      console.log("gtm:", _urlParams.get('gtm'));
+      console.log("ga:", _urlParams.get('ga'));
+
+      // Interceptar TODOS los pushes a dataLayer
+      (function() {
+        // ✅ FIX: Inicializar dataLayer antes de interceptar
+        window.dataLayer = window.dataLayer || [];
+        var originalPush = Array.prototype.push;
+
+        window.dataLayer.push = function() {
+          console.log("📦 dataLayer PUSH:", arguments[0]);
+          return originalPush.apply(this, arguments);
+        };
+      })();
+    </script>
+
+    <!-- Google Tag Manager (dinámico) -->
+    <script>
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',_gtmId);
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag GA4 (dinámico) -->
+    <script>
+      (function() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + _gaId;
+        document.head.appendChild(s);
+      })();
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', _gaId);
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="ad.size" content="width=300,height=600" />
+    <title>Audi ChatBot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+          font-family: 'Poppins';
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        #root {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-  <!-- CM360 Impression Tag – A3SB_CHATBOT_TEXTO (image pixel) -->
-  <img src="https://ad.doubleclick.net/ddm/trackimp/N444803.3630620FRATMEDIAMX/B34956653.442435780;dc_trk_aid=636203656;dc_trk_cid=251855878;ord=[timestamp];dc_dbm_token=${DC_DBM_TOKEN};dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};gpp=${GPP_STRING_755};gpp_sid=${GPP_SID};ltd=;dc_tdv=1?" attributionsrc border="0" height="1" width="1" alt="Advertisement" style="position:absolute;top:0;left:0;">
+  <!-- CM360 Impression Tag – A3SB_CHATBOT_TEXTO (JavaScript) -->
+  <script language='JavaScript1.1' src="https://ad.doubleclick.net/ddm/trackimpj/N444803.3630620FRATMEDIAMX/B34956653.442435780;dc_trk_aid=636203656;dc_trk_cid=251855878;ord=[timestamp];dc_dbm_token=${DC_DBM_TOKEN};dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};gpp=${GPP_STRING_755};gpp_sid=${GPP_SID};ltd=;dc_tdv=1?" attributionsrc></script>
   <!-- End CM360 Impression Tag -->
 
-  <script>
-    // El ad server (CM360) reemplaza el valor de clickTag automáticamente en producción
-    var clickTag = "https://ad.doubleclick.net/ddm/trackclk/N444803.3630620FRATMEDIAMX/B34956653.442435780;dc_trk_aid=636203656;dc_trk_cid=251855878;dc_dbm_token=${DC_DBM_TOKEN};dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};gpp=${GPP_STRING_755};gpp_sid=${GPP_SID};ltd=;dc_tdv=1";
+  <!-- Google Tag Manager (noscript dinámico) -->
+    <script>
+      document.write('<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' + _gtmId + '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>');
+    </script>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="root"></div>
 
-    // IDs de Analytics — se pasan como parámetros URL al index.html dentro del iframe
-    // Si el cliente necesita usar sus propios IDs, solo cambia estos valores aquí
-    var gtmId = 'GTM-5KCPBT4S';
-    var gaId  = 'G-ZGJZFDHEE1';
+    <!-- React y Babel para desarrollo -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    // Construir el src dinámicamente para propagar clickTag, GTM y GA4 al hijo
-    document.write(
-      '<iframe' +
-      ' src="https://pruebas.dardranightstudios.com/AudiL/' +
-        '?clickTag=' + encodeURIComponent(clickTag) +
-        '&gtm='      + encodeURIComponent(gtmId) +
-        '&ga='       + encodeURIComponent(gaId) +
-      '"' +
-      ' width="300"' +
-      ' height="600"' +
-      ' scrolling="no"' +
-      ' frameborder="0"' +
-      ' sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"' +
-      ' allow="autoplay"' +
-      '></iframe>'
-    );
-  </script>
+    <!-- Componente de React -->
+    <script type="text/babel">
+
+    const pushGTMEvent = (eventName, params = {}) => {
+      window.dataLayer = window.dataLayer || [];
+
+      const eventData = {
+        event: eventName,
+        ...params
+      };
+
+      console.log("📊 GTM EVENT:", eventData);
+
+      window.dataLayer.push(eventData);
+    };
+
+      const delayMessage = (text = "", base = 800) => {
+      const readingTime = text.length * 25; 
+      return base + readingTime;
+    };
+
+    var clickTag = (new URLSearchParams(window.location.search)).get('clickTag')
+      || "https://ad.doubleclick.net/ddm/trackclk/N444803.3630620FRATMEDIAMX/B34956653.442435780;dc_trk_aid=636203656;dc_trk_cid=251855878;dc_dbm_token=${DC_DBM_TOKEN};dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};gpp=${GPP_STRING_755};gpp_sid=${GPP_SID};ltd=;dc_tdv=1";
+
+
+
+
+
+        const { useState, useEffect, useRef } = React;
+
+        const ChatVehiculos = () => {
+          const [messages, setMessages] = useState([]);
+          const [currentStep, setCurrentStep] = useState('inicio');
+          const [selectedVehicle, setSelectedVehicle] = useState(null);
+          const [vehicleConfig, setVehicleConfig] = useState({
+            color: 'rojo',
+            llantas: 'deportivas',
+            fondo: 'ciudad'
+          });
+          const [backgroundImages, setBackgroundImages] = useState({});
+          const [vehicleImages, setVehicleImages] = useState({});
+          const [wheelsImages, setWheelsImages] = useState({});
+          const chatEndRef = useRef(null);
+          const canvasRef = useRef(null);
+
+          // Configuración de opciones
+          const config = {
+            colores: [
+              { nombre: 'Amarillo', valor: 'amarillo', hex: '#FFD700' },
+              { nombre: 'Azul', valor: 'azul', hex: '#1E90FF' },
+              { nombre: 'Blanco', valor: 'blanco', hex: '#FFFFFF' },
+              { nombre: 'Negro', valor: 'negro', hex: '#000000' },
+              { nombre: 'Gris', valor: 'gris', hex: '#808080' },
+              { nombre: 'Plata', valor: 'plata', hex: '#C0C0C0' },
+              { nombre: 'Rojo', valor: 'rojo', hex: '#DC143C' },
+              { nombre: 'Verde', valor: 'verde', hex: '#228B22' }
+            ],
+          };
+
+          const MenuImg = {
+            Financiamiento : './imagenes/RS3SB-Principal-Financiamiento.jpg',
+            Explorar: './imagenes/RS3SB-Principal-Explorar.jpg',
+            Equipamiento: './imagenes/RS3SB-Principal-Equipamiento.jpg',
+            CotizaAqui: './imagenes/RS3SB-Principal-CotizaAqui.jpg',
+            Concesionario: './imagenes/RS3SB-Principal-Concesionario.jpg',
+            MeFinanciamiento: './imagenes/RS3SB-Menu-Financiamiento.jpg',
+            DiseñoInterior: './imagenes/RS3SB-Menu-Equipamiento-DisInterior.jpg',
+            DiseñoExterior: './imagenes/RS3SB-Menu-Equipamiento-DisExterior.jpg',
+            Tecnologia: './imagenes/RS3SB-Menu-Equipamiento -Tecnologia.jpg',
+            Desempeño: './imagenes/RS3SB-Menu-Equipamiento -Desempenio.jpg',
+            MeConcesionario: './imagenes/RS3SB-Menu-Concesionario.jpg',
+            HeadUpDisplay: './imagenes/RS3SB-Equipamiento-tecnologia-Head-upDisplay.jpg',
+            FarosMatrix: './imagenes/RS3SB-Equipamiento-tecnologia-FarosMatrixLED.jpg',
+            VolanteAchantado: './imagenes/RS3SB-Equipamiento-interior-VolanteAchatado.jpg',
+            PanelesIluminados: './imagenes/RS3SB-Equipamiento-interior-PanelesIluminadosPuerta.jpg',
+            Carbono: './imagenes/RS3SB-Equipamiento-interior-InsertosCarbono.jpg',
+            AsientosBuckert: './imagenes/RS3SB-Equipamiento-interior-AsientosBucket.jpg',
+            TechoPanoramico: './imagenes/RS3SB-Equipamiento-exterior-TechoPanoramico.jpg',
+            Rines: './imagenes/RS3SB-Equipamiento-exterior-Rines.jpg',
+            OptinaNegro: './imagenes/RS3SB-Equipamiento-exterior_opticaNegro.jpg',
+            Potencia: './imagenes/RS3SB-Equipamiento-desempenio-Potencia.jpg',
+            CeroACien: './imagenes/RS3SB-Equipamiento-desempenio-0a100-3-8seg.jpg'
+
+          }
+
+          // Auto-scroll al final del chat
+          useEffect(() => {
+            chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+          }, [messages]);
+
+          // Dibujar vehículo en canvas
+          useEffect(() => {
+            if (canvasRef.current && currentStep === 'personalizar') {
+              drawVehicle();
+            }
+          }, [vehicleConfig, currentStep]);
+
+          const drawVehicle = () => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Limpiar canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Dibujar fondo
+            drawBackground(ctx, width, height);
+
+            // Dibujar vehículo
+            drawVehicleBody(ctx, width, height);
+
+            // Dibujar llantas
+            drawWheels(ctx, width, height);
+          };
+
+          const drawBackground = (ctx, width, height) => {
+            const fondos = {
+              ciudad: './imagenes/fondo-ciudad.jpg',
+              montaña: './imagenes/fondo-montaña.jpg',
+              playa: './imagenes/fondo-playa.jpg',
+              carretera: './imagenes/fondo-carretera.jpg'
+            };
+
+            const imagenFondo = backgroundImages[vehicleConfig.fondo];
+
+            if (imagenFondo && imagenFondo.complete) {
+              // Dibujar la imagen de fondo ajustándola al canvas
+              ctx.drawImage(imagenFondo, 0, 0, width, height);
+            } else {
+              // Fondo de respaldo mientras carga la imagen
+              ctx.fillStyle = '#87CEEB';
+              ctx.fillRect(0, 0, width, height);
+            }
+          };
+
+          const drawVehicleBody = (ctx, width, height) => {
+            const imagenVehiculo = vehicleImages[vehicleConfig.color];
+
+            if (imagenVehiculo && imagenVehiculo.complete) {
+              // Centrar el vehículo en el canvas
+              const vehicleWidth = width; // 70% del ancho del canvas
+              const vehicleHeight = height; // 50% del alto del canvas
+              const x = (width - vehicleWidth) / 2;
+              const y = (height - vehicleHeight) / 2;
+              
+              ctx.drawImage(imagenVehiculo, x, y, vehicleWidth, vehicleHeight);
+            } else {
+              // Placeholder mientras carga
+              ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
+              ctx.fillRect(width * 0.15, height * 0.25, width * 0.7, height * 0.5);
+            }
+          };
+
+          const drawWheels = (ctx, width, height) => {
+            const imagenLlantas = wheelsImages[vehicleConfig.llantas];
+
+            if (imagenLlantas && imagenLlantas.complete) {
+              // Dibujar las llantas sobre el vehículo
+              const wheelsWidth = width;
+              const wheelsHeight = height;
+              const x = (width - wheelsWidth) / 2;
+              const y = (height - wheelsHeight) / 2;
+              
+              ctx.drawImage(imagenLlantas, x, y, wheelsWidth, wheelsHeight);
+            }
+          };
+
+          const addMessage = (
+            text, 
+            isBot = true, 
+            options = null, 
+            isCanvas = false, 
+            isColorPicker = false, 
+            colors = null, 
+            isBackgroundPicker = false, 
+            backgrounds = null, 
+            isWheelsPicker = false, 
+            wheels = null, 
+            isLink = false,
+            image = null,
+            linkUrl = null
+          ) => {
+            setMessages(prev => [
+              ...prev, 
+              { 
+                text, 
+                isBot, 
+                options, 
+                isCanvas, 
+                isColorPicker, 
+                colors, 
+                isBackgroundPicker, 
+                backgrounds, 
+                isWheelsPicker, 
+                wheels, 
+                timestamp: Date.now(), 
+                isLink,
+                image,
+                linkUrl
+               }]);
+          };
+
+          const handleOptionClick = (option, nextStep) => {
+            // Agregar respuesta del usuario
+            addMessage(option.text, false);
+
+            // Ejecutar acción
+            if (option.action) {
+              option.action();
+            }
+
+            // Cambiar paso
+            //setTimeout(() => {
+            //  setCurrentStep(nextStep);
+            //}, 1000);
+          };
+
+          const handleConfigChange = (type, value) => {
+            setVehicleConfig(prev => ({ ...prev, [type]: value }));
+            addMessage(`${type === 'color' ? 'Color' : type === 'llantas' ? 'Llantas' : 'Fondo'} cambiado a: ${value}`, true);      
+            setTimeout(() => {
+              setCurrentStep('mostrar-carro');
+            }, 200);
+          };
+
+          const handleColorClick = (colorValor, colorNombre) => {
+            addMessage(colorNombre, false);
+            handleConfigChange('color', colorValor);
+          };
+
+          const handleBackgroundClick = (fondoValor, fondoNombre) => {
+            addMessage(fondoNombre, false);
+            handleConfigChange('fondo', fondoValor);
+          };
+
+          const handleWheelsClick = (llantasValor, llantasNombre) => {
+            addMessage(llantasNombre, false);
+            handleConfigChange('llantas', llantasValor);
+          };
+
+          const goToMainMenu = () => {
+                  pushGTMEvent("Volver", {
+                step: "Volver",
+                origen: "chatbot"
+              });
+            setCurrentStep(null);
+
+              setTimeout(() => {
+                addMessage('¿Qué te gustaría explorar?', true,);
+              }, 2500);
+
+              setTimeout(() => {
+                addMessage(
+                '', 
+                true,
+                null,
+                false,
+                false, 
+                null, 
+                false, 
+                null, 
+                false, 
+                null,
+                false,
+                MenuImg.Explorar);
+              }, 3700);
+
+              setTimeout(() => {
+                addMessage(
+                '', 
+                true,
+                 [
+                  { 
+                    text: 'Financiamiento', 
+                    action: () => setCurrentStep('Financiamiento'),   
+                    image: MenuImg.Financiamiento                
+                  },
+                  { 
+                    text: 'Equipamiento', 
+                    action: () => setCurrentStep('Equipamiento'), 
+                    image: MenuImg.Equipamiento   
+                  },
+                  { 
+                    text: 'Concesionario', 
+                    action: () => setCurrentStep('Concesionario'),
+                    image: MenuImg.Concesionario 
+                  }
+                  ,
+                  { 
+                    text: 'Configura tu próximo Audi', 
+                    action: () => setCurrentStep('Más Información'),
+                    image: MenuImg.Explorar 
+                  }
+                ],);
+              }, 5000);          
+            };
+
+          const goToEquipamiento = () =>{
+                  pushGTMEvent("Explorar", {
+                step: "Explorar",
+                origen: "chatbot"
+              });
+            setCurrentStep(null);
+              setTimeout(() => {
+                addMessage('¿Qué equipamiento te gustaría explorar?', true,);
+              }, 2500);
+
+            setTimeout(() =>{
+              addMessage('', true, [
+                    { 
+                      text: 'Diseño exterior', 
+                      image: MenuImg.DiseñoExterior,                   
+                      action: () => setCurrentStep('Diseño exterior')
+                    },
+                    { 
+                      text: 'Diseño interior', 
+                      action: () => setCurrentStep('Diseño interior'), 
+                      image: MenuImg.DiseñoInterior
+                    },
+                    { 
+                      text: 'Desempeño', 
+                      action: () => setCurrentStep('Desempeño'),
+                      image: MenuImg.Desempeño 
+                    },
+                    { 
+                      text: 'Tecnología', 
+                      action: () => setCurrentStep('Tecnología'),
+                      image: MenuImg.Tecnologia 
+                    
+                    },
+                    {
+                      text: 'Volver al menú', 
+                      action: goToMainMenu,
+                      image: MenuImg.Explorar
+                    }
+              ])
+            }, 3500)
+          }
+
+
+          // Inicializar conversación
+          useEffect(() => {
+            if (messages.length === 0) {
+              setTimeout(() => {
+                addMessage(
+                  '¡Hola! 👋, Descubre tu próximo Audi RS 3 Sportback', false);
+              }, 1000);
+              
+              setTimeout(() => {
+                addMessage('¿Qué te gustaría explorar?', true,);
+              }, 2500);
+
+              setTimeout(() => {
+                addMessage(
+                '', 
+                true,
+                null,
+                false,
+                false, 
+                null, 
+                false, 
+                null, 
+                false, 
+                null,
+                false,
+                MenuImg.Explorar);
+              }, 3700);
+
+                setTimeout(() => {
+                addMessage(
+                '', 
+                true,
+                 [
+                  { 
+                    text: 'Financiamiento', 
+                    action: () => setCurrentStep('Financiamiento'),   
+                    image: MenuImg.Financiamiento                
+                  },
+                  { 
+                    text: 'Equipamiento', 
+                    action: () => setCurrentStep('Equipamiento'), 
+                    image: MenuImg.Equipamiento   
+                  },
+                  { 
+                    text: 'Concesionario', 
+                    action: () => setCurrentStep('Concesionario'),
+                    image: MenuImg.Concesionario 
+                  },
+                                    ,
+                  { 
+                    text: 'Configura tu próximo Audi', 
+                    action: () => setCurrentStep('Más Información'),
+                    image: MenuImg.Explorar 
+                  }
+                ],);
+              }, 5000);
+
+            } else if(currentStep === 'Más Información'){
+              pushGTMEvent("ClickTag", {
+                step: "ClickTag",
+                origen: "chatbot"
+              });
+              setTimeout(() => {
+                addMessage(
+                  'Configura tu próximo Audi',
+                  true,
+                  null, 
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  true,
+                  null,
+                  clickTag
+              );
+              }, 1000);
+
+                            setTimeout(() => {
+                addMessage(
+                  '',
+                  true,
+                  [{text: 'Volver al menú', action: goToMainMenu }], 
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  true,
+                  null
+              );
+              }, 3500);
+
+            }
+            else if (currentStep === 'Financiamiento') {
+              pushGTMEvent("Financiamiento", {
+                step: "Financiamiento",
+                origen: "chatbot"
+              });
+              setTimeout(() => {
+                addMessage(
+                  'Configura tu próximo Audi',
+                  true,
+                  null, 
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  true,
+                  MenuImg.CotizaAqui,
+                  'https://audi.preautorizacionfs.com/#/ '
+              );
+              }, 1000);
+
+              setTimeout(() => {
+                addMessage(
+                  '',
+                  true,
+                  [{text: 'Volver al menú', action: goToMainMenu }], 
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  true,
+                  null
+              );
+              }, 3500);
+
+            } 
+            else if (currentStep === 'Concesionario') {
+              pushGTMEvent("Concesionario", {
+                step: "Concesionario",
+                origen: "chatbot"
+              });
+              setTimeout(() => {
+                addMessage(
+                  'Encuéntralo aquí',
+                  true,
+                  [{text: 'Volver al menú', action: goToMainMenu }], 
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  true,
+                  MenuImg.Concesionario,
+                  'https://www.audi.com.mx/es/dealer-locator-one/dealer-search-one/ '
+              );
+              }, 2500);
+            }
+            else if (currentStep === 'Equipamiento') {
+              pushGTMEvent("Equipamiento", {
+                step: "Equipamiento",
+                origen: "chatbot"
+              });
+              setTimeout(() => {
+                addMessage('¿Qué equipamiento te gustaría explorar?', true, 
+              );
+              }, 1500);
+
+              setTimeout(() => {
+                addMessage('', 
+                true, 
+                null,
+                  false,
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  MenuImg.Equipamiento
+              );
+              }, 2500);
+              
+              setTimeout(() => {
+                addMessage('', 
+                true, 
+                [
+                  { 
+                    text: 'Diseño exterior', 
+                    image: MenuImg.DiseñoExterior,                   
+                    action: () => setCurrentStep('Diseño exterior'),
+                  },
+                  { 
+                    text: 'Diseño interior', 
+                    action: () => setCurrentStep('Diseño interior'), 
+                    image: MenuImg.DiseñoInterior
+                  },
+                  { 
+                    text: 'Desempeño', 
+                    action: () => setCurrentStep('Desempeño'),
+                    image: MenuImg.Desempeño 
+                  },
+                  { 
+                    text: 'Tecnología', 
+                    action: () => setCurrentStep('Tecnología'),
+                    image: MenuImg.Tecnologia 
+                  
+                  },
+                  {
+                    text: 'Volver al menú', 
+                    action: goToMainMenu,
+                    image: MenuImg.Explorar
+                  }
+                ],
+                  false,
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  null
+              );
+              }, 3500);
+            } 
+            
+            else if (currentStep === 'Diseño exterior') {
+              pushGTMEvent("Diseño exterior", {
+                step: "Diseño exterior",
+                origen: "chatbot"
+              });
+
+            setTimeout(() => {
+                addMessage('El Audi RS 3 Sportback destaca por su parrilla Singleframe tipo panal, detalles en gris antracita, frenos RS rojos, spoiler negro y rines de 19 pulgadas.', true, 
+            null,
+                  false,
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  MenuImg.DiseñoExterior
+              );
+              }, 2000);
+
+                            setTimeout(() => {
+                addMessage('', true, [
+                  { 
+                    text: 'Óptica negra', 
+                    action: () => setCurrentStep('Óptica negra'),
+                    image: MenuImg.OptinaNegro                   
+                  },
+                  { 
+                    text: 'Rines de 19”', 
+                    action: () => setCurrentStep('Rines de 19”'),
+                    image: MenuImg.Rines 
+                  },
+                  { 
+                    text: 'Techo panorámico', 
+                    action: () => setCurrentStep('Techo panorámico'),
+                    image: MenuImg.TechoPanoramico 
+                  },
+                  {
+                    text: 'Equipamiento',
+                    action: goToEquipamiento,
+                    image: MenuImg.Equipamiento
+                  }
+                  ,
+                  {
+                    text: 'Volver al menú', 
+                    action: goToMainMenu,
+                    image: MenuImg.Explorar  
+                  }
+                ],
+                  false,
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  null
+              );
+              }, 8000);
+
+            }
+              else if (currentStep === 'Óptica negra') {
+                pushGTMEvent("Óptica negra", {
+                step: "Óptica negra",
+                origen: "chatbot"
+              });
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    null, 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.OptinaNegro
+                );
+                }, 1000);
+
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    [
+                      { 
+                        text: 'Rines de 19”', 
+                        action: () => setCurrentStep('Rines de 19”'),
+                        image: MenuImg.Rines
+                      },
+                      { 
+                        text: 'Techo panorámico', 
+                        action: () => setCurrentStep('Techo panorámico'),
+                        image: MenuImg.TechoPanoramico 
+                      },
+                      {
+                        text: 'Equipamiento',
+                        action: goToEquipamiento,
+                        image: MenuImg.Equipamiento
+                      },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                      }, 
+                  ], 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    null
+                );
+                }, 2500);
+              }
+              else if (currentStep === 'Rines de 19”') {
+                pushGTMEvent("Rines", {
+                step: "Rines",
+                origen: "chatbot"
+              });
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    null, 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.Rines
+                );
+                }, 2500);
+
+                  setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    [
+                      { 
+                        text: 'Óptica negra', 
+                        action: () => setCurrentStep('Óptica negra'),
+                        image: MenuImg.OptinaNegro                   
+                      },
+                      { 
+                        text: 'Techo panorámico', 
+                        action: () => setCurrentStep('Techo panorámico'),
+                         image: MenuImg.TechoPanoramico  
+                      },                   
+                      {
+                        text: 'Equipamiento',
+                        action: goToEquipamiento,
+                        image: MenuImg.Equipamiento
+                      },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar                      
+                      },                   
+                  ], 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    null
+                );
+                }, 3500);
+              }
+              else if (currentStep === 'Techo panorámico') {
+                pushGTMEvent("Techo", {
+                step: "Techo",
+                origen: "chatbot"
+              });
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    null, 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.TechoPanoramico 
+                );
+                }, 2500);
+
+                                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    [
+                      { 
+                        text: 'Óptica negra', 
+                        action: () => setCurrentStep('Óptica negra'),
+                        image: MenuImg.OptinaNegro                    
+                      },
+                      { 
+                        text: 'Rines de 19”', 
+                        action: () => setCurrentStep('Rines de 19”'),
+                        image: MenuImg.Rines 
+                      },                   
+                      {
+                        text: 'Equipamiento',
+                        action: goToEquipamiento,
+                        image: MenuImg.Equipamiento
+                      },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar                      
+                      },                   
+                  ], 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    null 
+                );
+                }, 3500);
+
+              }
+           
+            else if (currentStep === 'Diseño interior'){
+              pushGTMEvent("Diseño interior", {
+                step: "Diseño interior",
+                origen: "chatbot"
+              });
+              setTimeout(() => {                
+                addMessage(
+                  'El interior del RS 3 Sportback incluye asientos deportivos RS en microfibra y cuero, iluminación ambiental con diseño de rombos y volante deportivo achatado.',
+                  true,
+                  null, 
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  MenuImg.DiseñoInterior
+              );
+              }, 2500);
+
+              setTimeout(() => {                
+                addMessage(
+                  '',
+                  true,
+                  [
+                    { 
+                      text: 'Insertos de carbono', 
+                      action: () => setCurrentStep('Insertos de carbono'),
+                      image: MenuImg.Carbono 
+                    },
+                    { 
+                      text: 'Volante achatado', 
+                      action: () => setCurrentStep('Volante achatado'),
+                      image: MenuImg.VolanteAchantado 
+                    },
+                    ,
+                    { 
+                      text: 'Asientos Bucket RS', 
+                      action: () => setCurrentStep('Asientos Bucket RS'),
+                      image: MenuImg.AsientosBuckert
+                    },
+                    { 
+                      text: 'Paneles iluminados de puertas', 
+                      action: () => setCurrentStep('Paneles iluminados de puertas'),
+                      image: MenuImg.PanelesIluminados 
+                    },
+                    {
+                      text: 'Equipamiento',
+                      action: goToEquipamiento,
+                      image: MenuImg.Equipamiento
+                    },
+                    {
+                      text: 'Volver al menú', 
+                      action: goToMainMenu,
+                      image: MenuImg.Explorar 
+                    }, 
+                ], 
+              );
+              }, 3500);
+
+            }
+              else if (currentStep === 'Insertos de carbono') {
+                pushGTMEvent("Carbono", {
+                step: "Carbono",
+                origen: "chatbot"
+                });
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    null, 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.Carbono
+                );
+                }, 2500);
+
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    [
+                      { 
+                        text: 'Volante achatado', 
+                        action: () => setCurrentStep('Volante achatado'), 
+                        image: MenuImg.VolanteAchantado 
+                      },
+                      { 
+                        text: 'Asientos Bucket RS', 
+                        action: () => setCurrentStep('Asientos Bucket RS'),
+                        image: MenuImg.AsientosBuckert 
+                      },
+                      { 
+                        text: 'Paneles iluminados de puertas', 
+                        action: () => setCurrentStep('Paneles iluminados de puertas'),
+                        image: MenuImg.PanelesIluminados  
+                      },
+                      {
+                        text: 'Equipamiento',
+                        action: goToEquipamiento,
+                        image: MenuImg.Equipamiento
+                      },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                      }, 
+                  ], 
+                );
+                }, 3500);
+
+              }
+              else if (currentStep === 'Volante achatado') {
+                pushGTMEvent("Volante", {
+                step: "Volante",
+                origen: "chatbot"
+              });
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    null, 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.VolanteAchantado
+                );
+                }, 2500);
+
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    [
+                      { 
+                        text: 'Insertos de carbono', 
+                        action: () => setCurrentStep('Insertos de carbono'), 
+                        image: MenuImg.Carbono
+                      },
+                      { 
+                        text: 'Asientos Bucket RS', 
+                        action: () => setCurrentStep('Asientos Bucket RS'),
+                        image: MenuImg.AsientosBuckert 
+                      },
+                      ,
+                      { 
+                        text: 'Paneles iluminados de puertas', 
+                        action: () => setCurrentStep('Paneles iluminados de puertas'),
+                        image: MenuImg.PanelesIluminados  
+                      },
+                      {
+                        text: 'Equipamiento',
+                        action: goToEquipamiento,
+                        image: MenuImg.Equipamiento
+                      },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                      }, 
+                  ], 
+                );
+                }, 3500);
+
+              }
+              else if (currentStep === 'Asientos Bucket RS') {
+                pushGTMEvent("Asientos", {
+                step: "Asientos",
+                origen: "chatbot"
+              });
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    null, 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.AsientosBuckert
+                );
+                }, 2500);
+
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    [
+                      { 
+                        text: 'Insertos de carbono', 
+                        action: () => setCurrentStep('Insertos de carbono'),
+                        image: MenuImg.Carbono 
+                      },
+                      { 
+                        text: 'Volante achatado', 
+                        action: () => setCurrentStep('Volante achatado'),
+                        image: MenuImg.VolanteAchantado  
+                      },
+                      ,
+                      { 
+                        text: 'Paneles iluminados de puertas', 
+                        action: () => setCurrentStep('Paneles iluminados de puertas'),
+                        image: MenuImg.PanelesIluminados  
+                      },
+                      {
+                        text: 'Equipamiento',
+                        action: goToEquipamiento,
+                        image: MenuImg.Equipamiento
+                      },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                      }, 
+                  ], 
+                );
+                }, 3500);
+
+              }
+              else if (currentStep === 'Paneles iluminados de puertas') {
+                pushGTMEvent("Paneles", {
+                step: "Paneles",
+                origen: "chatbot"
+              });
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    null, 
+                    false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.PanelesIluminados
+                );
+                }, 2500);
+
+                setTimeout(() => {                
+                  addMessage(
+                    '',
+                    true,
+                    [
+                      { 
+                        text: 'Insertos de carbono', 
+                        action: () => setCurrentStep('Insertos de carbono'),
+                        image: MenuImg.Carbono  
+                      },
+                      { 
+                        text: 'Volante achatado', 
+                        action: () => setCurrentStep('Volante achatado'),
+                        image: MenuImg.VolanteAchantado  
+                      },
+                      ,
+                      { 
+                        text: 'Asientos Bucket RS', 
+                        action: () => setCurrentStep('Asientos Bucket RS'),
+                        image: MenuImg.AsientosBuckert  
+                      },
+                      {
+                        text: 'Equipamiento',
+                        action: goToEquipamiento,
+                        image: MenuImg.Equipamiento
+                      },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                      }, 
+                  ], 
+                );
+                }, 2500);
+
+              }
+            
+            else if (currentStep === 'Desempeño') {
+              pushGTMEvent("Desempeño", {
+                step: "Desempeño",
+                origen: "chatbot"
+              });
+              setTimeout(() => {
+                addMessage('Desempeño', true,);
+              }, 1500);
+              setTimeout(() => {
+                addMessage(
+                'El Audi RS 3 Sportback combina motor, chasis y tecnología. Ofrece 400 HP, 500 Nm de torque, tracción quattro y acelera de 0 a 100 km/h en 3.8 s.',
+                true, 
+                null,
+                false, 
+                false, 
+                null, 
+                false, 
+                null, 
+                false, 
+                null,
+                false,
+                MenuImg.Desempeño
+              );
+              }, 2500);
+              setTimeout(() => {
+                addMessage('', true, [
+                  { 
+                    text: 'De 0 a 100 km/hr en 3.8 seg', 
+                    action: () => setCurrentStep('De 0 a 100 km/hr en 3.8 seg'),
+                    image: MenuImg.CeroACien                   
+                  },
+                  { 
+                    text: 'Potencia de 400 hp', 
+                    action: () => setCurrentStep('Potencia de 400 hp'),
+                    image: MenuImg.Potencia 
+                  },
+                  {
+                    text: 'Equipamiento',
+                    action: goToEquipamiento,
+                    image: MenuImg.Equipamiento
+                  },
+                  {
+                    text: 'Volver al menú', 
+                    action: goToMainMenu,
+                    image: MenuImg.Explorar  
+                  } 
+                ],
+              );
+              }, 3500);
+            }  
+              else if (currentStep === 'De 0 a 100 km/hr en 3.8 seg') {
+                pushGTMEvent("De 0 a 100", {
+                step: "De 0 a 100",
+                origen: "chatbot"
+              });
+                setTimeout(() => {
+                  addMessage('', true, null,
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  MenuImg.CeroACien
+                );
+                }, 2500);
+
+                setTimeout(() => {
+                  addMessage('', true, [
+                    { 
+                      text: 'Potencia de 400 hp', 
+                      action: () => setCurrentStep('Potencia de 400 hp'),
+                      image: MenuImg.Potencia  
+                    },
+                    {
+                      text: 'Equipamiento',
+                      action: goToEquipamiento,
+                      image: MenuImg.Equipamiento
+                    },
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                      }
+                  ],
+                );
+                }, 3500);
+
+              }
+              else if (currentStep === 'Potencia de 400 hp') {
+                pushGTMEvent("Potencia", {
+                step: "Potencia",
+                origen: "chatbot"
+              });
+                setTimeout(() => {
+                  addMessage('', true, null,
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  MenuImg.Potencia
+                );
+                }, 2500);
+                setTimeout(() => {
+                  addMessage('', true, [
+                    { 
+                      text: 'De 0 a 100 km/hr en 3.8 seg', 
+                      action: () => setCurrentStep('De 0 a 100 km/hr en 3.8 seg'),
+                      image: MenuImg.CeroACien    
+                    },
+                    {
+                      text: 'Equipamiento',
+                      action: goToEquipamiento,
+                      image: MenuImg.Equipamiento
+                    },
+                    ,
+                      {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                      }, 
+                  ],
+                );
+                }, 3500);
+
+              }
+              
+            else if (currentStep === 'Tecnología') {
+                pushGTMEvent("Tecnología", {
+                step: "Tecnología",
+                origen: "chatbot"
+              });
+              setTimeout(() => {
+                addMessage(
+                  'El RS 3 incluye Audi parking system plus, drive select, Head-Up Display, protección proactiva, faros Matrix LED dinámicos y proyección de luz RS.', 
+                  true, null,
+                  false, 
+                  false, 
+                  null, 
+                  false, 
+                  null, 
+                  false, 
+                  null,
+                  false,
+                  MenuImg.Tecnologia
+              );
+              }, 2500);
+
+              setTimeout(() => {
+                addMessage('', true, [
+                  { 
+                    text: 'Faros Matrix LED', 
+                    action: () => setCurrentStep('Faros Matrix LED'),
+                    image: MenuImg.FarosMatrix 
+                  },
+                  { 
+                    text: 'Head-up Display', 
+                    action: () => setCurrentStep('Head-up Display'),
+                    image: MenuImg.HeadUpDisplay 
+                  },
+                  {
+                    text: 'Equipamiento',
+                    action: goToEquipamiento,
+                    image: MenuImg.Equipamiento
+                  },
+                  {
+                    text: 'Volver al menú', 
+                    action: goToMainMenu,
+                    image: MenuImg.Explorar  
+                  }
+                ],
+              );
+              }, 3500);
+
+            }
+              else if (currentStep === 'Faros Matrix LED') {
+                  pushGTMEvent("Faros", {
+                step: "Faros",
+                origen: "chatbot"
+              });
+                setTimeout(() => {
+                  addMessage('', true, null,
+                  false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.FarosMatrix
+                );
+                }, 2500);
+
+                setTimeout(() => {
+                  addMessage('', true, [
+                    { 
+                      text: 'Head-up Display', 
+                      action: () => setCurrentStep('Head-up Display'),
+                       image: MenuImg.HeadUpDisplay 
+                    },
+                    {
+                      text: 'Equipamiento',
+                      action: goToEquipamiento,
+                      image: MenuImg.Equipamiento
+                    },
+                    {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                    } 
+                  ],
+                );
+                }, 3500);
+
+              }
+              else if (currentStep === 'Head-up Display') {
+                    pushGTMEvent("Head-up", {
+                step: "Head-up",
+                origen: "chatbot"
+              });
+                setTimeout(() => {
+                  addMessage('Head-up Display', true, 
+                  null,
+                  false, 
+                    false, 
+                    null, 
+                    false, 
+                    null, 
+                    false, 
+                    null,
+                    false,
+                    MenuImg.HeadUpDisplay
+                );
+                }, 2500);
+
+                setTimeout(() => {
+                  addMessage('Head-up Display', true, [
+                    { 
+                      text: 'Faros Matrix LED', 
+                      action: () => setCurrentStep('Faros Matrix LED'),
+                      image: MenuImg.FarosMatrix  
+                    },
+                    {
+                      text: 'Equipamiento',
+                      action: goToEquipamiento,
+                      image: MenuImg.Equipamiento
+                    },
+                    {
+                        text: 'Volver al menú', 
+                        action: goToMainMenu,
+                        image: MenuImg.Explorar  
+                    } 
+                  ],
+                );
+                }, 3500);
+
+              }
+
+          }, [currentStep]);
+
+
+
+          return (
+            <div style={{
+              width: '300px',
+              height: '600px',
+              backgroundColor: '#ECE5DD',
+              borderRadius: '10px',
+              overflow: 'hidden',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+              display: 'flex',
+              flexDirection: 'column',
+              fontFamily: 'Poppins'
+            }}>
+              {/* Header */}
+              <div style={{
+                backgroundColor: '#000000',
+                color: 'white',
+                padding: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                <div style={{
+                  width: '84px',
+                  height: '29px',
+                  backgroundImage: 'url(./imagenes/logo_audi.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}></div>
+              </div>
+
+              {/* Chat Area */}
+              <div style={{
+                flex: 1,
+                overflowY: 'auto',
+                padding: '20px',
+                backgroundColor: '#eeeeee'
+              }}>
+                {messages.map((msg, index) => (
+                  <div key={index}>
+                    {/* Mensaje de texto */}
+                    {msg.text && !msg.image && !msg.isCanvas && !msg.isColorPicker && !msg.isBackgroundPicker && !msg.isWheelsPicker && (
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: msg.isBot ? 'flex-start' : 'flex-end',
+                        marginBottom: '10px'
+                      }}>
+                        <div style={{
+                          backgroundColor: msg.isBot ? '#e6ecf0' : '#000000',
+                          padding: '10px 15px',
+                          borderRadius: msg.isBot ? '0px 10px 10px 10px' : '10px 0px 10px 10px',
+                          color: msg.isBot ? 'black' : 'white',
+                          
+                          boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                          position: 'relative'
+                        }}>
+                          {msg.isLink ? (
+                          <a
+                            href={msg.linkUrl}
+                            target="_top"
+                            style={{ color: '#1a73e8', textDecoration: 'underline' }}
+                          >
+                            {msg.text}
+                          </a>
+                        ) : (
+                          msg.text
+                        )}
+                          {msg.isBot && (
+                            <div style={{
+                              position: 'absolute',
+                              left: '-8px',
+                              top: '0',
+                              width: '0',
+                              height: '0',
+                              borderTop: '8px solid #e6ecf0',
+                              borderLeft: '8px solid transparent'
+                            }} />
+                          )}
+                          {!msg.isBot && (
+                            <div style={{
+                              position: 'absolute',
+                              right: '-8px',
+                              top: '0',
+                              width: '0',
+                              height: '0',
+                              borderTop: '8px solid #000000',
+                              borderRight: '8px solid transparent'
+                            }} />
+                          )}
+
+                          </div>
+                        </div>
+                      )}
+
+                    {/* Canvas del vehículo */}
+                    {msg.isCanvas && (
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        marginBottom: '15px'
+                      }}>
+                        <div style={{
+                          backgroundColor: '#FFFFFF',
+                          padding: '10px',
+                          borderRadius: '10px',
+                          boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                        }}>
+                          <canvas 
+                            ref={canvasRef}
+                            width={280}
+                            height={200}
+                            style={{
+                              display: 'block',
+                              borderRadius: '5px'
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Imagen personalizada */}
+                    {msg.image && (
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: msg.isBot ? 'flex-start' : 'flex-end',
+                        marginBottom: '15px'
+                      }}>
+                        <div style={{
+                          backgroundColor: '#e6ecf0',
+                          borderRadius: '0px 10px 10px 10px',
+                          boxShadow: '0 2px 5px rgba(0,0,0,0.15)',
+                          overflow: 'hidden',
+                          maxWidth: '220px',
+                          position: 'relative'
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            left: '-8px',
+                            top: '0',
+                            width: '0',
+                            height: '0',
+                            borderTop: '8px solid #e6ecf0',
+                            borderLeft: '8px solid transparent'
+                          }} />
+                          {msg.linkUrl ? (
+                            <a 
+                              href={msg.linkUrl} 
+                              target="_top"
+                              onClick={() => {
+                                console.log("🖱️ CLICK TAG DISPARADO:", msg.linkUrl);
+                                pushGTMEvent("ClickTag_Click", {
+                                  url: msg.linkUrl
+                                });
+                              }} 
+                              style={{ display: 'block' }}>
+                              <img
+                                src={msg.image}
+                                alt=""
+                                style={{
+                                  width: '220px',
+                                  display: 'block',
+                                  cursor: 'pointer'
+                                }}
+                              />
+                            </a>
+                          ) : (
+                            <img
+                              src={msg.image}
+                              alt=""
+                              style={{
+                                width: '220px',
+                                display: 'block'
+                              }}
+                            />
+                          )}
+                          {msg.text && (
+                            <div style={{
+                              padding: '8px 12px',
+                              fontSize: '16px',
+                              fontFamily: 'Poppins',
+                              color: msg.linkUrl ? '#1a73e8' : '#000',
+                              textDecoration: msg.linkUrl ? 'underline' : 'none',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              cursor: msg.linkUrl ? 'pointer' : 'default'
+                            }}
+                            onClick={() => msg.linkUrl && window.open(msg.linkUrl, '_top')}>
+                              {msg.text}
+                            {msg.linkUrl && (
+                              <span style={{ fontSize: '11px' }}>↗</span>
+                            )}
+                          </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+
+                    {/* Selector de colores con esferas */}
+                    {msg.isColorPicker && msg.colors && (
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        marginBottom: '15px'
+                      }}>
+                        <div style={{
+                          backgroundColor: '#e6ecf0',
+                          padding: '15px',
+                          borderRadius: '0px 10px 10px 10px',
+                          maxWidth: '85%',
+                          boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                          position: 'relative'
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            left: '-8px',
+                            top: '0',
+                            width: '0',
+                            height: '0',
+                            borderTop: '8px solid #e6ecf0',
+                            borderLeft: '8px solid transparent'
+                          }} />
+                          <div style={{
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            marginBottom: '12px',
+                            color: '#000'
+                          }}>
+                            {msg.text}
+                          </div>
+                          <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(4, 1fr)',
+                            gap: '12px'
+                          }}>
+                            {msg.colors.map((color, colorIndex) => (
+                              <div
+                                key={colorIndex}
+                                onClick={() => handleColorClick(color.valor, color.nombre)}
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    width: '50px',
+                                    height: '50px',
+                                    borderRadius: '50%',
+                                    backgroundColor: color.hex,
+                                    border: color.valor === 'blanco' || color.valor === 'plata' ? '2px solid #ccc' : '2px solid transparent',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                                    transition: 'transform 0.2s, box-shadow 0.2s',
+                                  }}
+                                  onMouseOver={(e) => {
+                                    e.target.style.transform = 'scale(1.1)';
+                                    e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.25)';
+                                  }}
+                                  onMouseOut={(e) => {
+                                    e.target.style.transform = 'scale(1)';
+                                    e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                                  }}
+                                />
+                                <span style={{
+                                  fontSize: '11px',
+                                  color: '#555',
+                                  textAlign: 'center',
+                                  fontWeight: '500'
+                                }}>
+                                  {color.nombre}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Selector de fondos con miniaturas */}
+                    {msg.isBackgroundPicker && msg.backgrounds && (
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        marginBottom: '15px'
+                      }}>
+                        <div style={{
+                          backgroundColor: '#e6ecf0',
+                          padding: '15px',
+                          borderRadius: '0px 10px 10px 10px',
+                          maxWidth: '85%',
+                          boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                          position: 'relative'
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            left: '-8px',
+                            top: '0',
+                            width: '0',
+                            height: '0',
+                            borderTop: '8px solid #e6ecf0',
+                            borderLeft: '8px solid transparent'
+                          }} />
+                          <div style={{
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            marginBottom: '12px',
+                            color: '#000'
+                          }}>
+                            {msg.text}
+                          </div>
+                          <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(2, 1fr)',
+                            gap: '12px'
+                          }}>
+                            {msg.backgrounds.map((background, bgIndex) => (
+                              <div
+                                key={bgIndex}
+                                onClick={() => handleBackgroundClick(background.valor, background.nombre)}
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    width: '80px',
+                                    height: '80px',
+                                    borderRadius: '50%',
+                                    backgroundImage: `url(${background.imagen})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    border: '3px solid #ddd',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                                    transition: 'transform 0.2s, box-shadow 0.2s',
+                                  }}
+                                  onMouseOver={(e) => {
+                                    e.target.style.transform = 'scale(1.1)';
+                                    e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.25)';
+                                  }}
+                                  onMouseOut={(e) => {
+                                    e.target.style.transform = 'scale(1)';
+                                    e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                                  }}
+                                />
+                                <span style={{
+                                  fontSize: '11px',
+                                  color: '#555',
+                                  textAlign: 'center',
+                                  fontWeight: '500'
+                                }}>
+                                  {background.nombre}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Selector de llantas con miniaturas */}
+                    {msg.isWheelsPicker && msg.wheels && (
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        marginBottom: '15px'
+                      }}>
+                        <div style={{
+                          backgroundColor: '#e6ecf0',
+                          padding: '15px',
+                          borderRadius: '0px 10px 10px 10px',
+                          maxWidth: '85%',
+                          boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                          position: 'relative'
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            left: '-8px',
+                            top: '0',
+                            width: '0',
+                            height: '0',
+                            borderTop: '8px solid #e6ecf0',
+                            borderLeft: '8px solid transparent'
+                          }} />
+                          <div style={{
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            marginBottom: '12px',
+                            color: '#000'
+                          }}>
+                            {msg.text}
+                          </div>
+                          <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(2, 1fr)',
+                            gap: '12px'
+                          }}>
+                            {msg.wheels.map((wheel, wheelIndex) => (
+                              <div
+                                key={wheelIndex}
+                                onClick={() => handleWheelsClick(wheel.valor, wheel.nombre)}
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    width: '80px',
+                                    height: '80px',
+                                    borderRadius: '50%',
+                                    backgroundImage: `url(${wheel.miniatura})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    border: '3px solid #ddd',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                                    transition: 'transform 0.2s, box-shadow 0.2s',
+                                  }}
+                                  onMouseOver={(e) => {
+                                    e.target.style.transform = 'scale(1.1)';
+                                    e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.25)';
+                                  }}
+                                  onMouseOut={(e) => {
+                                    e.target.style.transform = 'scale(1)';
+                                    e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                                  }}
+                                />
+                                <span style={{
+                                  fontSize: '11px',
+                                  color: '#555',
+                                  textAlign: 'center',
+                                  fontWeight: '500'
+                                }}>
+                                  {wheel.nombre}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                   {/* Opciones de respuesta */}
+                  {msg.options && index === messages.length - 1 && (
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '12px',
+                      marginTop: '15px',
+                      alignItems: 'flex-end',
+                      width: '100%'
+                    }}>
+                      {msg.options.map((option, optIndex) => (
+                        <div
+                          key={optIndex}
+                          onClick={() => {
+                            handleOptionClick(option, currentStep);
+                          }}
+                          style={{
+                            width: '70%',
+                            backgroundColor: '#000000',
+                            color: '#FFFFFF',
+                            borderRadius: '12px',
+                            boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+                            cursor: 'pointer',
+                            overflow: 'hidden',
+                            transition: 'transform 0.2s ease'
+                          }}
+                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        >
+                          {option.image && (
+                            <img
+                              src={option.image}
+                              alt=""
+                              style={{
+                                width: '100%',
+                                height: '50px',
+                                objectFit: 'cover'
+                              }}
+                            />
+                          )}
+
+                          <div style={{
+                            padding: '15px',
+                            fontWeight: '600',
+                            fontSize: '16px',
+                            textAlign: 'left'
+                          }}>
+                            {option.text}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  </div>
+                ))}
+                <div ref={chatEndRef} />
+              </div>
+            </div>
+          );
+        };
+
+        // Renderizar la aplicación
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ChatVehiculos />);
+    </script>
 </body>
 </html>
